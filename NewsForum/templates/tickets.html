@@ -1,0 +1,32 @@
+{% extends 'flatpages/default.html' %}
+
+<html lang="en">
+<head>
+    {% block title %}
+    {% endblock title %}
+</head>
+<body>
+
+    {% block content %}
+    {% if tickets %}
+    <table class="table table-primary">
+    {% for ticket in tickets %}
+        <tr>
+            <td>
+                {{ ticket.category }}
+            </td>
+            <td>
+                {{ ticket.head }}
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'ticket_detail' ticket.id %}">Details</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <h5>There is no active tickets right now</h5>
+    {% endif %}
+    {% endblock content %}
+</body>
+</html>

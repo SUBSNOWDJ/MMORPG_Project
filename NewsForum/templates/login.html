@@ -1,0 +1,30 @@
+{% extends 'flatpages/default.html' %}
+
+<html lang="en">
+<head>
+    {% block title %}
+    {% endblock title %}
+</head>
+<body>
+
+    {% block content %}
+    {% if user.is_authenticated %}
+        <h5>What r u doing?</h5>
+        <h5>Go back!!!</h5>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" name="login" value="Login">
+            <h5>Or if you don't have an account</h5>
+
+        </form>
+        <a class="btn btn-primary" href="/auth/registration/">Registration</a>
+    {% if error %}
+      {{ error }}
+    {% endif %}
+    {% endif %}
+    {% endblock content %}
+
+</body>
+</html>

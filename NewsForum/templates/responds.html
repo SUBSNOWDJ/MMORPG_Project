@@ -1,0 +1,39 @@
+{% extends 'flatpages/default.html' %}
+
+<html lang="en">
+<head>
+    {% block title %}
+    {% endblock title %}
+</head>
+<body>
+
+    {% block content %}
+    {% if responds %}
+    <table class="table table-primary">
+    {% for respond in responds %}
+        <tr>
+            <td>
+                {{ respond.responder }}
+            </td>
+            <td>
+                {{ respond.ticket.category }}
+            </td>
+            <td>
+                {{ respond.ticket.head }}
+            </td>
+            <td>
+                {% if not respond.is_accepted %}
+                <a class="btn btn-primary" href="{% url 'respond_conformation' respond.id %}">Accept respond</a>
+                {% else %}
+                <h5>Accepted</h5>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <h5>Nobody responded to your tickets yet</h5>
+    {% endif %}
+    {% endblock content %}
+</body>
+</html>

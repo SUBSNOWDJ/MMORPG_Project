@@ -1,0 +1,17 @@
+{% extends 'flatpages/default.html' %}
+
+<html lang="en">
+<head>
+    {% block title %}
+    {% endblock title %}
+</head>
+<body>
+    {% block content %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit" name="submit" value="Submit">Send news</button>
+        </form>
+    {% endblock content %}
+</body>
+</html>
